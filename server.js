@@ -8,7 +8,8 @@ const { v4: uuidv4 } = require('uuid');
 //this is our importing of the db.json to hold our notes
 var notes = require('./db.json');
 
-const PORT = 3001;
+//defined for heroku deployment
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 
