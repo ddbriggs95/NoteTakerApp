@@ -2,18 +2,11 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
+
 
 //this is our importing of the db.json to hold our notes
 var notes = require('./db.json');
-
-
-const uuid = () => {
-  Math.floor((1 + Math.random()) * 0x10000)
-    .toString(16)
-    .substring(1);
-
-}
-
 
 const PORT = 3001;
 const app = express();
@@ -49,13 +42,35 @@ app.get('/api/notes', (req, res) => {
 app.post('/api/notes', (req, res) => {
 
   let newNote = req.body;
+  newNote.id = uuidv4();
   notes.push(newNote);
   fs.writeFile("db.json", JSON.stringify(notes, '\t'), err => {
     if (err) throw err;
     return true;
   })
+  res.json(newNote);
 
 });
+
+//deletes notes based on there id that we created using uuid dependency
+app.delete('/api/notes/:id', (req, res) => {
+  console.log('hit');
+  console.log(req.params);
+  let noteMap = notes.filter(function (note) {
+    return note.id != req.params.id;
+
+  })
+  console.log(noteMap);
+ notes = noteMap;
+ fs.writeFile("db.json", JSON.stringify(notes, '\t'), err => {
+  if (err) throw err;
+  return true;
+})
+res.json(notes);
+})
+
+
+
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
