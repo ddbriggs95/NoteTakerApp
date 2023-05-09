@@ -55,8 +55,8 @@ app.post('/api/notes', (req, res) => {
 
 //deletes notes based on there id that we created using uuid dependency
 app.delete('/api/notes/:id', (req, res) => {
-  console.log('hit');
-  console.log(req.params);
+  //console.log('hit');
+  //console.log(req.params);
   let noteMap = notes.filter(function (note) {
     return note.id != req.params.id;
 
