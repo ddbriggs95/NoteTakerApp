@@ -1,7 +1,7 @@
 # NoteTakerApp
 
 ## Description
-
+This project is an application called Note Taker that can be used to write and save notes. This application uses an Express.js back end and will save and retrieve note data from a JSON file. This application will also be deployed to Heroku.
 
 ## Acceptance Criteria
 
@@ -20,3 +20,13 @@ GIVEN a note-taking application
 -THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
 
 ## Live Deployment
+
+Here is a link to live application deployed on Heroku: 
+
+https://dowlingbriggs-notetakerapp.herokuapp.com/
+
+
+
+
+Github Repository: https://github.com/ddbriggs95/NoteTakerApp
+
